@@ -1,0 +1,96 @@
+﻿<Page x:Class="InfiWheelDesktop.CarListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InfiWheelDesktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CarListPage">
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Border Background="#333533"
+        CornerRadius="20"
+        BorderThickness="3px"
+        BorderBrush="#202020">
+        <Grid Background="#F9F9F9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Header -->
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Color="#FCA311" Offset="0"/>
+                        <GradientStop Color="#E5E5E5" Offset="2"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <StackPanel.VerticalAlignment>
+                    <VerticalAlignment>Stretch</VerticalAlignment>
+                </StackPanel.VerticalAlignment>
+                <TextBlock Text="InfiWheel" FontSize="24" Foreground="#14213D" Margin="20"/>
+                <Button Content="Profile" Margin="10" Padding="5" Background="#E5E5E5" Foreground="#14213D" Height="28" Click="ProfileButton_Click"/>
+                <Button Content="Settings" Margin="10" Padding="5" Background="#E5E5E5" Foreground="#14213D" Height="28" Click="SettingsButton_Click"/>
+                <Button Content="Log out" Margin="10" Padding="5" Background="#14213D" Foreground="#E5E5E5" Height="28" Click="LogoutButton_Click"/>
+            </StackPanel>
+
+            <!-- Main Content -->
+            <Grid Grid.Column="1" Margin="20">
+                <Frame x:Name="mainFrame"/>
+                <ScrollViewer Grid.Column="1" Margin="20">
+                    <!-- Car List -->
+                    <ItemsControl ItemsSource="{Binding Cars}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#BFBFBF" BorderThickness="1" Margin="0,0,0,10" Padding="10" Background="White">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Image}" Width="120" Height="90" Margin="0,0,10,0"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Name}" FontSize="18" Foreground="#333333" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="#666666"/>
+                                            <TextBlock>
+                                        <Run Text="Cena: "/> <!-- Tekst "Cena: " -->
+                                        <Run Text="{Binding Price}" Foreground="#666666"/> <!-- Powiązana cena -->
+                                            </TextBlock>
+                                            <TextBlock>
+                                        <Run Text="Lokalizacja: "/> <!-- Tekst "Cena: " -->
+                                        <Run Text="{Binding Location}" Foreground="#666666"/> <!-- Powiązana cena -->
+                                            </TextBlock>
+                                            <Button Content="Rent Now" Width="100" Height="30" Margin="0,10,0,0" Background="#14213D" Foreground="White" Click="RentNowButton_Click"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>
