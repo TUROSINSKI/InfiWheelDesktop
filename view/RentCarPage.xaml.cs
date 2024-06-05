@@ -32,7 +32,7 @@ namespace InfiWheelDesktop
         private void RentNowButton_Click(object sender, RoutedEventArgs e)
         {
             // Pobierz dane z kontekstu danych ViewModelu
-            string carName = viewModel.SelectedCar.Name;
+            string carName = viewModel.SelectedCar.Manufacturer;
             DateTime startDate = viewModel.StartDate;
             DateTime endDate = viewModel.EndDate;
 

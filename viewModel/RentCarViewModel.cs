@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfiWheelDesktop.model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,17 +12,18 @@ namespace InfiWheelDesktop
 {
     public class RentCarViewModel : INotifyPropertyChanged
     {
-        private Car? selectedCar;
-        public Car SelectedCar
+        private CarModel? selectedCar;
+        public CarModel SelectedCar
         {
             get { return selectedCar; }
             set
             {
                 selectedCar = value;
-                OnPropertyChanged("SelectedCar");
+                OnPropertyChanged(nameof(SelectedCar));
             }
         }
-        public ObservableCollection<Car> RentedCars { get; } = new ObservableCollection<Car>();
+        public ObservableCollection<CarModel> RentedCars { get; } = new ObservableCollection<CarModel>();
+
         public void RentCar()
         {
             if (SelectedCar != null)
@@ -38,7 +40,7 @@ namespace InfiWheelDesktop
             set
             {
                 startDate = value;
-                OnPropertyChanged("StartDate");
+                OnPropertyChanged(nameof(StartDate));
             }
         }
 
@@ -49,7 +51,7 @@ namespace InfiWheelDesktop
             set
             {
                 endDate = value;
-                OnPropertyChanged("EndDate");
+                OnPropertyChanged(nameof(EndDate));
             }
         }
 
