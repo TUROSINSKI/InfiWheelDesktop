@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static InfiWheelDesktop.viewModel.LandingViewModel;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.Windows;
 
 namespace InfiWheelDesktop.viewModel
 {
@@ -18,6 +19,8 @@ namespace InfiWheelDesktop.viewModel
         private string _email;
         private string _message;
         private readonly Action _navigateToMainPage;
+        private readonly Action _showLoading;
+        private readonly Action _hideLoading;
 
         public string Password
         {
@@ -59,6 +62,11 @@ namespace InfiWheelDesktop.viewModel
 
         private async Task LoginAsync()
         {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow?.ShowLoading();
+
+            await Task.Delay(3000);
+
             var userModel = new UserModel
             {
                 password = Password,
@@ -78,6 +86,7 @@ namespace InfiWheelDesktop.viewModel
             {
                 Message = "Login failed. Please try again.";
             }
+            mainWindow?.HideLoading();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

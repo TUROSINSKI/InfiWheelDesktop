@@ -22,5 +22,15 @@ namespace InfiWheelDesktop
         {
             InitializeComponent();
         }
+
+        public void ShowLoading()
+        {
+            LoadingOverlay.Visibility = Visibility.Visible;
+        }
+
+        public void HideLoading()
+        {
+            LoadingOverlay.Visibility = Visibility.Collapsed;
+        }
     }
 }

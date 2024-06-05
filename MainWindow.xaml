@@ -1,6 +1,17 @@
 ﻿<Window x:Class="InfiWheelDesktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:InfiWheelDesktop"
+        xmlns:services="clr-namespace:InfiWheelDesktop.services"
         Title="MainWindow" Height="720" Width="1280">
-    <Frame NavigationUIVisibility="Hidden" Source="view\MainPage.xaml"/>
+
+    <Grid>
+        <!-- Main content of the application -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="view\MainPage.xaml"/>
+
+        <!-- Overlay for loading animation -->
+        <Grid x:Name="LoadingOverlay" Visibility="Collapsed" Background="#80000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <services:LoadingAnimation HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
 </Window>
