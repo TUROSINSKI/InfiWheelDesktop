@@ -21,10 +21,13 @@ namespace InfiWheelDesktop
     /// </summary>
     public partial class SignUpPage : Page
     {
+
+        private SignUpViewModel viewModel;
         public SignUpPage()
         {
             InitializeComponent();
-            DataContext = new viewModel.SignUpViewModel(NavigateToLoginPage);
+            viewModel = new SignUpViewModel(NavigateToLoginPage);
+            this.DataContext = viewModel;
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
@@ -52,9 +55,17 @@ namespace InfiWheelDesktop
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext != null)
+            if (sender is PasswordBox passwordBox)
             {
-                ((SignUpViewModel)this.DataContext).Password = ((PasswordBox)sender).Password;
+                viewModel.Password = passwordBox.Password;
+            }
+        }
+
+        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                viewModel.ConfirmPassword = passwordBox.Password;
             }
         }
     }

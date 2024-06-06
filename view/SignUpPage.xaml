@@ -130,7 +130,7 @@ BorderBrush="#202020">
 
                 <!-- Confirm Password -->
                 <TextBlock Grid.Row="6" Text="Confirm Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
-                <PasswordBox Grid.Row="7" Margin="0,0,0,10" x:Name="confirmPasswordBox" Height="40" Width="600"/>
+                <PasswordBox Grid.Row="7" Margin="0,0,0,10" x:Name="confirmPasswordBox" Height="40" Width="600" PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
 
                 <!-- Login Button -->
                 <Button Grid.Row="9" Content="Sign Up" Height="40" Width="160" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding SignUpCommand}" IsDefault="True"/>

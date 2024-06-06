@@ -60,8 +60,20 @@ namespace InfiWheelDesktop.viewModel
             LoginCommand = new RelayCommand(async () => await LoginAsync());
         }
 
+        private bool CanLogin()
+        {
+            return !string.IsNullOrEmpty(Email) &&
+                   !string.IsNullOrEmpty(Password);
+        }
+
         private async Task LoginAsync()
         {
+            if (!CanLogin())
+            {
+                MessageBox.Show("Please fill in all fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow?.ShowLoading();
 
@@ -84,7 +96,7 @@ namespace InfiWheelDesktop.viewModel
             }
             else
             {
-                Message = "Login failed. Please try again.";
+                MessageBox.Show("Credentials are not correct.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             mainWindow?.HideLoading();
         }

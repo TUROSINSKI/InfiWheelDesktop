@@ -17,6 +17,7 @@ namespace InfiWheelDesktop.viewModel
 
         private string _username;
         private string _password;
+        private string _confirmPassword;
         private string _email;
         private string _message;
         private readonly Action _navigateToMainPage;
@@ -38,6 +39,16 @@ namespace InfiWheelDesktop.viewModel
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                _confirmPassword = value;
+                OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
 
@@ -69,8 +80,27 @@ namespace InfiWheelDesktop.viewModel
             SignUpCommand = new RelayCommand(async () => await SignUpAsync());
         }
 
+        private bool CanSignUp()
+        {
+            return !string.IsNullOrEmpty(Username) &&
+                   !string.IsNullOrEmpty(Email) &&
+                   !string.IsNullOrEmpty(Password) &&
+                   !string.IsNullOrEmpty(ConfirmPassword);
+        }
+
         private async Task SignUpAsync()
         {
+            if (!CanSignUp())
+            {
+                MessageBox.Show("Please fill in all fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!ValidatePasswords())
+            {
+                return;
+            }
+
             var mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow?.ShowLoading();
 
@@ -85,14 +115,24 @@ namespace InfiWheelDesktop.viewModel
 
             if (success)
             {
-                Message = "Sign-up successful!";
                 _navigateToMainPage();
+                MessageBox.Show("Now you can login!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                Message = "Sign-up failed. Please try again.";
+                MessageBox.Show("Sign-up failed. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             mainWindow?.HideLoading();
+        }
+
+        private bool ValidatePasswords()
+        {
+            if (Password != ConfirmPassword)
+            {
+                MessageBox.Show("Passwords are not the same!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
