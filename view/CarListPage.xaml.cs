@@ -61,6 +61,7 @@ namespace InfiWheelDesktop
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            TokenManager.Instance.ClearToken();
             this.NavigationService.Navigate(new MainPage());
         }
 

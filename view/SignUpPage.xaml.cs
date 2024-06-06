@@ -11,10 +11,14 @@ namespace InfiWheelDesktop
     /// </summary>
     public partial class SignUpPage : Page
     {
+
+        private SignUpViewModel viewModel;
         public SignUpPage()
         {
             InitializeComponent();
-            DataContext = new viewModel.SignUpViewModel(NavigateToMainPage);
+            viewModel = new SignUpViewModel(NavigateToLoginPage);
+            this.DataContext = viewModel;
+
             SetPageTheme();
         }
 
@@ -32,20 +36,28 @@ namespace InfiWheelDesktop
             this.NavigationService.Navigate(new LoginPage());
         }
 
-        private void NavigateToMainPage()
+        private void NavigateToLoginPage()
         {
             // Navigate to MainPage
             this.Dispatcher.Invoke(() =>
             {
-                this.NavigationService.Navigate(new CarListPage());
+                this.NavigationService.Navigate(new LoginPage());
             });
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext != null)
+            if (sender is PasswordBox passwordBox)
             {
-                ((SignUpViewModel)this.DataContext).Password = ((PasswordBox)sender).Password;
+                viewModel.Password = passwordBox.Password;
+            }
+        }
+
+        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                viewModel.ConfirmPassword = passwordBox.Password;
             }
         }
         private void SetPageTheme()
