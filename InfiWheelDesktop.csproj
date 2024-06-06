@@ -6,12 +6,18 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>assets\icon\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="assets\CarAnimation.gif" />
     <None Remove="assets\CarAnimation.json" />
+    <None Remove="assets\Przeźroczyste-Granatowe.png" />
     <None Remove="Fonts\Sequel.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="assets\icon\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +28,15 @@
   <ItemGroup>
     <Resource Include="assets\CarAnimation.gif" />
     <Resource Include="assets\CarAnimation.json" />
+    <Resource Include="assets\Przeźroczyste-Granatowe.png" />
     <Resource Include="Fonts\Sequel.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>
