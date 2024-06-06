@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static InfiWheelDesktop.viewModel.LandingViewModel;
 using System.Windows.Input;
+using System.Windows;
 
 namespace InfiWheelDesktop.viewModel
 {
@@ -70,6 +71,9 @@ namespace InfiWheelDesktop.viewModel
 
         private async Task SignUpAsync()
         {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow?.ShowLoading();
+
             var userModel = new UserModel
             {
                 username = Username,
@@ -88,6 +92,7 @@ namespace InfiWheelDesktop.viewModel
             {
                 Message = "Sign-up failed. Please try again.";
             }
+            mainWindow?.HideLoading();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -24,7 +24,7 @@ namespace InfiWheelDesktop
         public SignUpPage()
         {
             InitializeComponent();
-            DataContext = new viewModel.SignUpViewModel(NavigateToMainPage);
+            DataContext = new viewModel.SignUpViewModel(NavigateToLoginPage);
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
@@ -41,12 +41,12 @@ namespace InfiWheelDesktop
             this.NavigationService.Navigate(new LoginPage());
         }
 
-        private void NavigateToMainPage()
+        private void NavigateToLoginPage()
         {
             // Navigate to MainPage
             this.Dispatcher.Invoke(() =>
             {
-                this.NavigationService.Navigate(new CarListPage());
+                this.NavigationService.Navigate(new LoginPage());
             });
         }
 
