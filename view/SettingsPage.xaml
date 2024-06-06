@@ -33,14 +33,14 @@
             CornerRadius="20"
             BorderThickness="3px"
             BorderBrush="#202020">
-        <Grid Background="#F9F9F9">
+        <Grid x:Name="Main_Grid" Background="#F9F9F9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Header -->
-            <StackPanel Grid.Column="0" Orientation="Vertical">
+            <StackPanel x:Name="Sidebar" Grid.Column="0" Orientation="Vertical">
                 <StackPanel.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#FCA311" Offset="0"/>
@@ -55,7 +55,7 @@
             </StackPanel>
 
             <!-- Main Content -->
-            <StackPanel Grid.Column="1" Margin="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="300">
+            <StackPanel x:Name="Content_Stack" Grid.Column="1" Margin="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="300">
 
                 <TextBlock Text="Settings" FontSize="20" FontWeight="Bold" Foreground="#14213D"/>
 
@@ -69,7 +69,7 @@
                     <Slider Grid.Column="2" Value="10" Maximum="100" Minimum="0" TickFrequency="5" Width="100"/>
                 </Grid>
 
-                <Border Height="1" CornerRadius="1" Background="Black" Margin="2"/>
+                <Separator Background="#14213D" Height="1" Margin="2,2,2,2" />
 
                 <Grid HorizontalAlignment="Stretch" Margin="7">
                     <Grid.ColumnDefinitions>
@@ -77,11 +77,11 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Toggle Option 2" Foreground="#14213D"/>
-                    <CheckBox Grid.Column="2"/>
+                    <TextBlock x:Name="Darkmode_text" Grid.Column="0" Text="Darkmode" Foreground="#14213D"/>
+                    <CheckBox x:Name="Darkmode_checkbox" Grid.Column="2" Checked="Darkmode_checkbox_Checked" Unchecked="Darkmode_checkbox_Unchecked"/>
                 </Grid>
 
-                <Border Height="1" CornerRadius="1" Background="Black" Margin="2"/>
+                <Separator Background="#14213D" Height="1" Margin="2,2,2,2" />
 
                 <Grid HorizontalAlignment="Stretch" Margin="7">
                     <Grid.ColumnDefinitions>

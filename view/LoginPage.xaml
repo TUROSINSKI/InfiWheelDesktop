@@ -70,7 +70,7 @@
   CornerRadius="20"
   BorderThickness="3px"
   BorderBrush="#202020">
-        <Grid Background="#F9F9F9">
+        <Grid x:Name="Main_Grid" Background="#F9F9F9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
@@ -109,13 +109,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Email:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Email_Text" Grid.Row="0" Text="Email:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <TextBox Grid.Row="1" Margin="0,0,0,10" x:Name="emailTextBox" Height="40" Width="600" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock Grid.Row="2" Text="Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Password_Text" Grid.Row="2" Text="Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <PasswordBox Grid.Row="3" Margin="0,0,0,10" x:Name="passwordTextBox" Height="40" Width="600" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-                <Button Grid.Row="5" Content="Login" Height="40" Width="160" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding LoginCommand}"/>
+                <Button x:Name="Login_Button" Grid.Row="5" Content="Login" Height="40" Width="160" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding LoginCommand}"/>
             </Grid>
 
         </Grid>

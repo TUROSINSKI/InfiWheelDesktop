@@ -32,14 +32,14 @@
             CornerRadius="20"
             BorderThickness="3px"
             BorderBrush="#202020">
-        <Grid Background="#F9F9F9">
+        <Grid x:Name="Main_Grid" Background="#F9F9F9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Header -->
-            <StackPanel Grid.Column="0" Orientation="Vertical">
+            <StackPanel x:Name="Sidebar" Grid.Column="0" Orientation="Vertical">
                 <StackPanel.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#FCA311" Offset="0"/>
@@ -53,10 +53,10 @@
             </StackPanel>
 
             <!-- Main Content -->
-            <Grid Grid.Column="1" Margin="20">
+            <Grid x:Name="Content_Grid" Grid.Column="1" Margin="20">
                 <StackPanel>
                     <Border BorderBrush="#BFBFBF" BorderThickness="0" Margin="10">
-                        <StackPanel Grid.Column="1" Width="240">
+                        <StackPanel x:Name="Rent_Stack" Grid.Column="1" Width="240">
                             <TextBlock Text="Car Rental" FontSize="18" FontWeight="Bold" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                             <StackPanel Orientation="Horizontal">
@@ -77,7 +77,7 @@
                         </StackPanel>
                     </Border>
 
-                    <Button Content="Rent Now" Width="100" Height="30" Margin="0 20 0 0" Background="#14213D" Foreground="White" Click="RentNowButton_Click"/>
+                    <Button x:Name="Rent_Button" Content="Rent Now" Width="100" Height="30" Margin="0 20 0 0" Background="#14213D" Foreground="White" Click="RentNowButton_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

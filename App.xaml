@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:InfiWheelDesktop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <!--Tak nie robimy - wolimy metode na jaskiniowca-->
+            <!--<Style TargetType="Grid" x:Name="Sidebar">
+                <Setter Property="Background" Value="Pink"/>
+            </Style>
+            <Style  TargetType="StackPanel">
+                <Setter Property="Background" Value="Pink"/>
+            </Style>-->
+        </ResourceDictionary>
     </Application.Resources>
+
 </Application>

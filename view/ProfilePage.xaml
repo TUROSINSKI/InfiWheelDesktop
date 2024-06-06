@@ -33,7 +33,7 @@
             CornerRadius="20"
             BorderThickness="3px"
             BorderBrush="#202020">
-        <Grid Background="#F9F9F9">
+        <Grid x:Name="Main_Grid" Background="#F9F9F9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="*"/>
@@ -59,7 +59,7 @@
 
                 <Image Source="E:\Projekty\WPF\projectwpf\InfiWheelDesktop\InfiWheelDesktop\assets\user_1.jpg" Height="121" Width="121"/>
 
-                <TextBlock Text="User name" HorizontalAlignment="Center" FontSize="16"/>
+                <TextBlock x:Name="User_name" Text="User name" HorizontalAlignment="Center" FontSize="16"/>
                 <TextBlock Text="E-mail adress" HorizontalAlignment="Center" Foreground="Gray"/>
                 <Button Content="My cars" Margin="5,20,5,5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>
                 <Button Content="My reviews" Margin="5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>

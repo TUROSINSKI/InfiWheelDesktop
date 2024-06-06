@@ -37,7 +37,7 @@
       CornerRadius="20"
       BorderThickness="3px"
       BorderBrush="#202020">
-        <Grid Background="#FFFFFF">
+        <Grid x:Name="Main_Grid" Background="#FFFFFF">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>

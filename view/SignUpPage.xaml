@@ -70,7 +70,7 @@
 CornerRadius="20"
 BorderThickness="3px"
 BorderBrush="#202020">
-        <Grid Background="#F9F9F9">
+        <Grid x:Name="Main_Grid" Background="#F9F9F9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
@@ -117,23 +117,23 @@ BorderBrush="#202020">
                 </Grid.RowDefinitions>
 
                 <!-- Username -->
-                <TextBlock Grid.Row="0" Text="Username:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Username" Grid.Row="0" Text="Username:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <TextBox Grid.Row="1" Margin="0,0,0,10" x:Name="usernameTextBox" Height="40" Width="600" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!-- Email -->
-                <TextBlock Grid.Row="2" Text="Email:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Email" Grid.Row="2" Text="Email:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <TextBox Grid.Row="3" Margin="0,0,0,10" x:Name="emailTextBox" Height="40" Width="600" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!-- Password -->
-                <TextBlock Grid.Row="4" Text="Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Password" Grid.Row="4" Text="Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <PasswordBox Grid.Row="5" Margin="0,0,0,10" x:Name="passwordTextBox" Height="40" Width="600" PasswordChanged="PasswordBox_PasswordChanged"/>
 
                 <!-- Confirm Password -->
-                <TextBlock Grid.Row="6" Text="Confirm Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
+                <TextBlock x:Name="Confirm_Password" Grid.Row="6" Text="Confirm Password:" Margin="0,0,0,5" VerticalAlignment="Center" Width="600"/>
                 <PasswordBox Grid.Row="7" Margin="0,0,0,10" x:Name="confirmPasswordBox" Height="40" Width="600"/>
 
                 <!-- Login Button -->
-                <Button Grid.Row="9" Content="Sign Up" Height="40" Width="160" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding SignUpCommand}"/>
+                <Button x:Name="Singup_Button" Grid.Row="9" Content="Sign Up" Height="40" Width="160" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding SignUpCommand}"/>
             </Grid>
 
 
