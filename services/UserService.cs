@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace InfiWheelDesktop.services
 {
@@ -66,7 +67,36 @@ namespace InfiWheelDesktop.services
                 };
             }
         }
+
+        public static async Task<UserModel> GetUserProfile()
+        {
+            try
+            {
+                string token = TokenManager.Instance.GetToken();
+                Debug.WriteLine(token);
+                if (string.IsNullOrEmpty(token))
+                    throw new InvalidOperationException("Token is not available");
+
+                var request = new HttpRequestMessage(HttpMethod.Get, "https://infiwheel.azurewebsites.net/User/findToken");
+                var requestBody = JsonConvert.SerializeObject(new { token });
+                Debug.WriteLine(requestBody);
+                request.Content = new StringContent(requestBody, null, "application/json");
+
+                HttpResponseMessage response = await client.SendAsync(request);
+                Debug.WriteLine(response.StatusCode);
+                response.EnsureSuccessStatusCode();
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(JsonConvert.DeserializeObject<UserModel>(responseContent));
+                return JsonConvert.DeserializeObject<UserModel>(responseContent);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
+
     public class LoginResponse
     {
         public bool Success { get; set; }

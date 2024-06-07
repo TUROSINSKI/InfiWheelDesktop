@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InfiWheelDesktop.viewModel;
 
 namespace InfiWheelDesktop
 {
@@ -23,6 +24,7 @@ namespace InfiWheelDesktop
         public ProfilePage()
         {
             InitializeComponent();
+            DataContext = new ProfilePageViewModel();
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
