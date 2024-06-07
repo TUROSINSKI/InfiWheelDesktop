@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InfiWheelDesktop.services;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InfiWheelDesktop
 {
@@ -27,6 +17,7 @@ namespace InfiWheelDesktop
             InitializeComponent();
             this.viewModel = viewModel;
             DataContext = this.viewModel; // Ustaw kontekst danych na ViewModel
+            SetPageTheme();
         }
 
         private void RentNowButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +30,34 @@ namespace InfiWheelDesktop
             // Przykładowa logika rezerwacji auta
             MessageBox.Show($"Car '{carName}' has been reserved from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}.");
             this.NavigationService.Navigate(new CarListPage());
+        }
+
+        private void SetPageTheme()
+        {
+            if (SettingsManager.Instance.GetDarkmode())
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Rent_Button.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.SidebarOrange) as SolidColorBrush;
+                Rent_Button.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                List<TextBlock> textBlocks = Helper.FindVisualChildren<TextBlock>(Rent_Stack);
+
+                foreach (TextBlock textBlock in textBlocks)
+                {
+                    textBlock.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                }
+            }
+            else
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgLightColor) as SolidColorBrush;
+                Rent_Button.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Rent_Button.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                List<TextBlock> textBlocks = Helper.FindVisualChildren<TextBlock>(Rent_Stack);
+
+                foreach (TextBlock textBlock in textBlocks)
+                {
+                    textBlock.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
+                }
+            }
         }
     }
 }

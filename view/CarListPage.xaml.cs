@@ -1,9 +1,9 @@
 ﻿using InfiWheelDesktop.model;
 using InfiWheelDesktop.services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace InfiWheelDesktop
 {
@@ -15,10 +15,29 @@ namespace InfiWheelDesktop
         public CarListPage()
         {
             InitializeComponent();
+
             viewModel = new RentCarViewModel();
             Cars = new ObservableCollection<CarModel>();
             DataContext = this;
             LoadCars(); // Asynchroniczne ładowanie samochodów
+
+            SetPageTheme();
+        }
+
+        private void SetPageTheme()
+        {
+            if (SettingsManager.Instance.GetDarkmode())
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Car_List.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Car_List.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+            }
+            else
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgLightColor) as SolidColorBrush;
+                Car_List.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgLightColor) as SolidColorBrush;
+                Car_List.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
+            }
         }
 
         private async void LoadCars()

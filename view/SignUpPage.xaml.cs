@@ -1,18 +1,8 @@
-﻿using InfiWheelDesktop.viewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InfiWheelDesktop.services;
+using InfiWheelDesktop.viewModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InfiWheelDesktop
 {
@@ -28,6 +18,8 @@ namespace InfiWheelDesktop
             InitializeComponent();
             viewModel = new SignUpViewModel(NavigateToLoginPage);
             this.DataContext = viewModel;
+
+            SetPageTheme();
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +58,29 @@ namespace InfiWheelDesktop
             if (sender is PasswordBox passwordBox)
             {
                 viewModel.ConfirmPassword = passwordBox.Password;
+            }
+        }
+        private void SetPageTheme()
+        {
+            if (SettingsManager.Instance.GetDarkmode())
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Singup_Button.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.SidebarOrange) as SolidColorBrush;
+                Singup_Button.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Username.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                Email.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                Password.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                Confirm_Password.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+            }
+            else
+            {
+                Main_Grid.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgLightColor) as SolidColorBrush;
+                Singup_Button.Background = new BrushConverter().ConvertFromString(SettingsManager.Instance.BgColor) as SolidColorBrush;
+                Singup_Button.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgColor) as SolidColorBrush;
+                Username.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
+                Email.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
+                Password.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
+                Confirm_Password.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
             }
         }
     }
