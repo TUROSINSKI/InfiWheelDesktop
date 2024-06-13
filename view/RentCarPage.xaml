@@ -61,7 +61,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Car Name:" Margin="10"/>
-                                <TextBlock Text="{Binding SelectedCar.Name}" Margin="10"/>
+                                <TextBlock Text="{Binding SelectedCar.Manufacturer}" Margin="10"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center" Width="240">
                                 <StackPanel Orientation="Horizontal">

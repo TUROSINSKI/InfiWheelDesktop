@@ -1,8 +1,10 @@
 ﻿using InfiWheelDesktop.model;
 using InfiWheelDesktop.services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace InfiWheelDesktop
@@ -18,10 +20,15 @@ namespace InfiWheelDesktop
 
             viewModel = new RentCarViewModel();
             Cars = new ObservableCollection<CarModel>();
+            Car_List.ItemsSource = Cars;
             DataContext = this;
-            LoadCars(); // Asynchroniczne ładowanie samochodów
-
             SetPageTheme();
+            SortDirectionComboBox.SelectionChanged += SortOptions_Changed;
+            SortByComboBox.SelectionChanged += SortOptions_Changed;
+        }
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadCars("asc", "manufacturer"); // Domyślne sortowanie przy starcie
         }
 
         private void SetPageTheme()
@@ -39,10 +46,21 @@ namespace InfiWheelDesktop
                 Car_List.Foreground = new BrushConverter().ConvertFromString(SettingsManager.Instance.FgLightColor) as SolidColorBrush;
             }
         }
-
-        private async void LoadCars()
+        private async void SortOptions_Changed(object sender, SelectionChangedEventArgs e)
         {
-            var carsFromService = await CarService.GetCarsAsync();
+            if (SortDirectionComboBox.SelectedItem == null || SortByComboBox.SelectedItem == null)
+                return;
+
+            string sortDirection = ((ComboBoxItem)SortDirectionComboBox.SelectedItem).Tag.ToString();
+            string sortBy = ((ComboBoxItem)SortByComboBox.SelectedItem).Tag.ToString();
+
+            await LoadCars(sortDirection, sortBy);
+        }
+
+        private async Task LoadCars(string sortDirection, string sortBy)
+        {
+            var carsFromService = await CarService.GetCarsAsync(sortDirection, sortBy);
+            Cars.Clear();
             foreach (var car in carsFromService)
             {
                 Cars.Add(car);
@@ -74,5 +92,6 @@ namespace InfiWheelDesktop
         {
             this.NavigationService.Navigate(new ProfilePage());
         }
+        
     }
 }

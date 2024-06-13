@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:InfiWheelDesktop"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CarListPage">
+      Title="CarListPage"
+      Loaded="Window_Loaded">
 
     <Page.Resources>
         <Style TargetType="Button">
@@ -55,11 +56,23 @@
                 <Button Content="Settings" Margin="10" Padding="5" Background="#E5E5E5" Foreground="#14213D" Height="28" Click="SettingsButton_Click"/>
                 <Button Content="Log out" Margin="10" Padding="5" Background="#14213D" Foreground="#E5E5E5" Height="28" Click="LogoutButton_Click"/>
             </StackPanel>
-
             <!-- Main Content -->
-            <StackPanel x:Name="Content_Stack" Grid.Column="1" Margin="20">
-                <Frame x:Name="mainFrame"/>
-                <ScrollViewer x:Name="Car_Scroller" Grid.Column="1" Margin="20">
+            <Grid x:Name="Content_Stack" Grid.Column="1" Margin="20,26,20,10">
+                <Grid>
+                    <!-- Sort Options -->
+                    <StackPanel Orientation="Horizontal" Margin="10,-10,10,0" VerticalAlignment="Top" Height="33">
+                        <ComboBox x:Name="SortDirectionComboBox" Width="150" Margin="5" >
+                            <ComboBoxItem Content="Ascending" Tag="asc" IsSelected="True"/>
+                            <ComboBoxItem Content="Descending" Tag="desc"/>
+                        </ComboBox>
+                        <ComboBox x:Name="SortByComboBox" Width="150" Margin="5" >
+                            <ComboBoxItem Content="Manufacturer" Tag="manufacturer" IsSelected="True"/>
+                            <ComboBoxItem Content="Subtype" Tag="subtype"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <ScrollViewer x:Name="Car_Scroller" Grid.Column="1" Margin="20" VerticalAlignment="Top">
                     <!-- Car List -->
                     <ListView x:Name="Car_List" ItemsSource="{Binding Cars}" Foreground="Aqua">
                         <ListView.ItemTemplate>
@@ -77,7 +90,9 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
-            </StackPanel>
+            </Grid>
+
+
         </Grid>
     </Border>
 </Page>

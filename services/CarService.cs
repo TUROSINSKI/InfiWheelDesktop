@@ -18,13 +18,13 @@ namespace InfiWheelDesktop.services
         private static readonly HttpClient client = new HttpClient();
         
 
-        public static async Task<List<CarModel>> GetCarsAsync()
+        public static async Task<List<CarModel>> GetCarsAsync(string sortDirection, string sortBy)
         {
             try
             {
                 string token = TokenManager.Instance.GetToken();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                HttpResponseMessage response = await client.GetAsync("https://infiwheel.azurewebsites.net/Car/all");
+                HttpResponseMessage response = await client.GetAsync($"https://infiwheel.azurewebsites.net/Car/?sortDirection={sortDirection}&sortBy={sortBy}");
                 response.EnsureSuccessStatusCode();
 
                 var responseBody = await response.Content.ReadAsStringAsync();
