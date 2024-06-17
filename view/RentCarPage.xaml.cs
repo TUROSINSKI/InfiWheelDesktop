@@ -2,6 +2,13 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Threading.Tasks;
+using System.Text;
+using Newtonsoft.Json;
+using System.Net.Http;
+using InfiWheelDesktop.model;
+using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace InfiWheelDesktop
 {
@@ -20,14 +27,15 @@ namespace InfiWheelDesktop
             SetPageTheme();
         }
 
-        private void RentNowButton_Click(object sender, RoutedEventArgs e)
+        private async void RentNowButton_Click(object sender, RoutedEventArgs e)
         {
-            // Pobierz dane z kontekstu danych ViewModelu
+            long carId = viewModel.SelectedCar.Id;
             string carName = viewModel.SelectedCar.Manufacturer;
             DateTime startDate = viewModel.StartDate;
             DateTime endDate = viewModel.EndDate;
+            await RentCarService.SaveBooking(carId, startDate.ToShortDateString(), endDate.ToShortDateString());
+            
 
-            // Przykładowa logika rezerwacji auta
             MessageBox.Show($"Car '{carName}' has been reserved from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}.");
             this.NavigationService.Navigate(new CarListPage());
         }
