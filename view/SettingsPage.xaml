@@ -59,16 +59,6 @@
 
                 <TextBlock Text="Settings" FontSize="20" FontWeight="Bold" Foreground="#14213D"/>
 
-                <Grid HorizontalAlignment="Stretch" Margin="7">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Slider Option 1" Foreground="#14213D"/>
-                    <Slider Grid.Column="2" Value="10" Maximum="100" Minimum="0" TickFrequency="5" Width="100"/>
-                </Grid>
-
                 <Separator Background="#14213D" Height="1" Margin="2,2,2,2" />
 
                 <Grid HorizontalAlignment="Stretch" Margin="7">
@@ -82,17 +72,6 @@
                 </Grid>
 
                 <Separator Background="#14213D" Height="1" Margin="2,2,2,2" />
-
-                <Grid HorizontalAlignment="Stretch" Margin="7">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Toggle Option 3 " Foreground="#14213D"/>
-                    <CheckBox Grid.Column="2"/>
-                </Grid>
-
 
             </StackPanel>
         </Grid>

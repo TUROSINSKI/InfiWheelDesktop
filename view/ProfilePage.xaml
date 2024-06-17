@@ -63,9 +63,8 @@
                 <TextBlock Text="{Binding Email}" HorizontalAlignment="Center" Foreground="Gray"/>
                 <Button Content="My cars" Margin="5,20,5,5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>
                 <Button Content="My reviews" Margin="5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>
-                <Button Content="Balance top up" Margin="5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>
-                <Button Content="Order history" Margin="5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28"/>
-                <Button Content="Delete account" Margin="5" Background="#E5E5E5" Foreground="#FF0000" FontSize="14" Height="28"/>
+                <Button Content="Order history" Margin="5" Background="#E5E5E5" Foreground="#14213D" FontSize="14" Height="28" Click="OrderHistoryButton_Click"/>
+                <Button x:Name="DeleteAccountButton" Content="Delete account" Margin="5" Background="#E5E5E5" Foreground="#FF0000" FontSize="14" Height="28" Click="DeleteAccountButton_Click"/>
 
             </StackPanel>
         </Grid>
